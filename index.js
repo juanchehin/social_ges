@@ -7,8 +7,9 @@ require('dotenv').config({ path: 'variables.env' })
 
 index = require('./routes/index'); // Mio
 
-// Helpers con algunas funciones
-const helpers = require('./helpers');
+
+// Crear una app de express
+const app = express();
 
 // Crear la conexion a la BD
 const db = require('./config/db');
@@ -21,8 +22,6 @@ require('./models/Usuarios');
 //     .then(() => console.log('Conectado al Servidor'))
 //     .catch(error => console.log(error));
 
-// Crear una app de express
-const app = express();
 
 // Archivos estaticos
 app.use(express.static('public'));
@@ -31,8 +30,9 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
 
-// Carpeta de las vistas
-app.set('views', path.join(__dirname, './views'));
+// set the view engine to ejs
+app.engine('ejs', require('ejs').renderFile);
+app.set('view engine', 'ejs');
 
 app.use('/', index);
 

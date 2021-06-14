@@ -114,79 +114,71 @@
     </div>
 
     <!-- *********FOOTER************ -->
-    <<!-- <link rel="import" href="../views/contenido/footer.html"> -->
-        <!-- <div data-include="../views/contenido/footer.html"></div> -->
-        <!-- <div id="DivContent"></div> -->
-        <div id="includedContent"></div>
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
 
 
 
+    <!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
 
-        <!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+    <script src="../public/js/dashboard.js"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-        <script src="../public/js/dashboard.js"></script>
+    <script>
+        const search = document.getElementById('search');
+        const getTweets = document.getElementById('getTweets');
+        const output = document.getElementById('output');
+        const mesSender = document.getElementById('mesSender');
 
+        mesSender.addEventListener('submit', addComment);
+        getTweets.addEventListener('click', getAllTweets);
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script>
-            $(function() {
-                $("#includedContent").load("footer.html");
-            });
-
-            const search = document.getElementById('search');
-            const getTweets = document.getElementById('getTweets');
-            const output = document.getElementById('output');
-            const mesSender = document.getElementById('mesSender');
-
-            mesSender.addEventListener('submit', addComment);
-            getTweets.addEventListener('click', getAllTweets);
-
-            // Postea un comentario en twitter
-            function addComment() {
-                event.preventDefault();
-                let newTweetComment = {
-                    "comment": document.getElementById('newMessage').value
-                }
-                console.log('new tweet es : ', newTweetComment);
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", 'http://localhost:3000/comment/', true);
-                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState != 4 || xhr.status != 200) return;
-                    console.log(xhr.responseText);
-                }
-                xhr.send(JSON.stringify(newTweetComment));
+        // Postea un comentario en twitter
+        function addComment() {
+            event.preventDefault();
+            let newTweetComment = {
+                "comment": document.getElementById('newMessage').value
             }
-
-            // Busca y muestra twits en twitter
-            function getAllTweets() {
-                console.log('entra 3 : ');
-                const url = 'http://localhost:3000/tweets/' + search.value;
-                console.log('url es : ', url);
-                fetch(url).then(function(response) {
-                    return response.json()
-                }).then(function(data) {
-                    outputTweets(data.statuses)
-                }).catch(function(error) {
-                    console.log('error : ', JSON.stringify(error));
-                })
+            console.log('new tweet es : ', newTweetComment);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", 'http://localhost:3000/comment/', true);
+            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState != 4 || xhr.status != 200) return;
+                console.log(xhr.responseText);
             }
+            xhr.send(JSON.stringify(newTweetComment));
+        }
 
-            function outputTweets(data) {
-                output.innerHTML = ' ';
-                data.forEach(function(item, i) {
-                    console.log(item);
-                    let hyper = `<a href="https://twitter.com/i/web/status/${item.id_str}" target="_blank">${item.text}</a>`;
-                    let li = document.createElement('li');
-                    let span = document.createElement('span');
-                    span.innerHTML = `${hyper} <small>${item.user.name}</small> ♥ ${item.retweet_count}`;
-                    li.appendChild(span);
-                    output.appendChild(li);
-                })
-            }
-        </script>
+        // Busca y muestra twits en twitter
+        function getAllTweets() {
+            console.log('entra 3 : ');
+            const url = 'http://localhost:3000/tweets/' + search.value;
+            console.log('url es : ', url);
+            fetch(url).then(function(response) {
+                return response.json()
+            }).then(function(data) {
+                outputTweets(data.statuses)
+            }).catch(function(error) {
+                console.log('error : ', JSON.stringify(error));
+            })
+        }
+
+        function outputTweets(data) {
+            output.innerHTML = ' ';
+            data.forEach(function(item, i) {
+                console.log(item);
+                let hyper = `<a href="https://twitter.com/i/web/status/${item.id_str}" target="_blank">${item.text}</a>`;
+                let li = document.createElement('li');
+                let span = document.createElement('span');
+                span.innerHTML = `${hyper} <small>${item.user.name}</small> ♥ ${item.retweet_count}`;
+                li.appendChild(span);
+                output.appendChild(li);
+            })
+        }
+    </script>
 </body>
 
 </html>
