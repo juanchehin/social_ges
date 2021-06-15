@@ -20,6 +20,10 @@ router.get('/tweets/:search',
     twitterController.buscarTweets
 );
 
+router.post('/facebook/:comment',
+    facebookController.publicar
+);
+
 
 
 module.exports = router;

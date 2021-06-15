@@ -16,217 +16,207 @@
 
 <body>
 
+    <%- include('../partials/header'); %>
 
-    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Social GES</a>
-        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-        <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">Sign out</a>
-            </li>
-        </ul>
-    </header>
+        <div class="container-fluid">
+            <div class="row">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                    <div class="position-sticky pt-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item" id="twitter">
+                                <a class="nav-link active" aria-current="page" href="#">
+                                    <i class="ri-twitter-line"></i>
+                                    <span data-feather="home"></span> Twitter
+                                </a>
+                            </li>
+                            <li class="nav-item" id="wikipedia">
+                                <a class="nav-link" href="#">
+                                    <i class="ri-global-line"></i>
+                                    <span data-feather="file"></span> Wikipedia
+                                </a>
+                            </li>
+                            <li class="nav-item" id="facebook">
+                                <a class="nav-link" href="#">
+                                    <i class="ri-facebook-circle-fill"></i>
+                                    <span data-feather="shopping-cart"></span> Facebook
+                                </a>
+                            </li>
+                        </ul>
 
-    <div class="container-fluid">
-        <div class="row">
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item" id="twitter">
-                            <a class="nav-link active" aria-current="page" href="#">
-                                <i class="ri-twitter-line"></i>
-                                <span data-feather="home"></span> Twitter
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                            <span>Saved reports</span>
+                            <a class="link-secondary" href="#" aria-label="Add a new report">
+                                <span data-feather="plus-circle"></span>
                             </a>
-                        </li>
-                        <li class="nav-item" id="wikipedia">
-                            <a class="nav-link" href="#">
-                                <i class="ri-global-line"></i>
-                                <span data-feather="file"></span> Wikipedia
-                            </a>
-                        </li>
-                        <li class="nav-item" id="facebook">
-                            <a class="nav-link" href="#">
-                                <i class="ri-facebook-circle-fill"></i>
-                                <span data-feather="shopping-cart"></span> Facebook
-                            </a>
-                        </li>
-                    </ul>
+                        </h6>
+                        <ul class="nav flex-column mb-2">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span data-feather="file-text"></span> Current month
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span data-feather="file-text"></span> Last quarter
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span data-feather="file-text"></span> Social engagement
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span data-feather="file-text"></span> Year-end sale
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
 
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Saved reports</span>
-                        <a class="link-secondary" href="#" aria-label="Add a new report">
-                            <span data-feather="plus-circle"></span>
-                        </a>
-                    </h6>
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span> Current month
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span> Last quarter
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span> Social engagement
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span> Year-end sale
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
 
-                <!-- ************************* -->
-                <div id="twitterPage">
-                    <%- include('../pages/twitter'); %>
-                </div>
-                <div id="facebookPage">
-                    <%- include('../pages/facebook'); %>
-                </div>
-                <div id="wikipediaPage">
-                    <%- include('../pages/wikipedia'); %>
-                </div>
+                    <!-- ************************* -->
+                    <div id="twitterPage">
+                        <%- include('../pages/twitter'); %>
+                    </div>
+                    <div id="facebookPage">
+                        <%- include('../pages/facebook'); %>
+                    </div>
+                    <div id="wikipediaPage">
+                        <%- include('../pages/wikipedia'); %>
+                    </div>
 
-
-                <!-- ************************* -->
-            </main>
+                    <!-- ************************* -->
+                </main>
+            </div>
         </div>
-    </div>
 
-    <!-- *********FOOTER************ -->
-    <footer>
-        <%- include('../partials/footer'); %>
-    </footer>
-
+        <!-- *********FOOTER************ -->
+        <footer>
+            <%- include('../partials/footer'); %>
+        </footer>
 
 
-    <!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
 
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-    <script src="../public/js/dashboard.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
 
-    <!-- Modularizar esto de abajo -_-- -->
+        <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+        <script src="../public/js/dashboard.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
-    <script>
-        // var twitter = document.querySelector('#twitter').value;
-        // console.log('twitter es ;: ', twitter);
+        <!-- Modularizar esto de abajo -_-- -->
 
-        const search = document.getElementById('search');
-        const getTweets = document.getElementById('getTweets');
-        const output = document.getElementById('output');
-        const mesSender = document.getElementById('mesSender');
+        <script>
+            // var twitter = document.querySelector('#twitter').value;
+            // console.log('twitter es ;: ', twitter);
 
-        const facebook = document.getElementById('facebook');
 
-        mesSender.addEventListener('submit', addComment);
-        getTweets.addEventListener('click', getAllTweets);
 
-        $('#facebook').click(function() {
-            console.log('facebook');
-            $('#wikipediaPage').hide();
-            $('#facebookPage').show();
-            $('#twitterPage').hide();
+            const search = document.getElementById('search');
+            const getTweets = document.getElementById('getTweets');
+            const output = document.getElementById('output');
+            const mesSender = document.getElementById('mesSender');
 
-        })
+            const facebook = document.getElementById('facebook');
 
-        $('#twitter').click(function() {
-            console.log('twitter');
+            mesSender.addEventListener('submit', addComment);
+            getTweets.addEventListener('click', getAllTweets);
+
+            // Al principio, solo aparece twitter
             $('#wikipediaPage').hide();
             $('#facebookPage').hide();
             $('#twitterPage').show();
 
-        })
+            $('#facebook').click(function() {
+                console.log('facebook');
+                $('#wikipediaPage').hide();
+                $('#facebookPage').show();
+                $('#twitterPage').hide();
 
-
-
-        $('#wikipedia').click(function() {
-            console.log('wiki');
-            $('#wikipediaPage').show();
-            $('#facebookPage').hide();
-            $('#twitterPage').hide();
-
-        })
-
-        // Selecciona lo que se vera en la pag principal
-        function makeRequest() {
-
-            var url = document.querySelector('input[name="url"]').value;
-            var resource = document.querySelector('#resource').value;
-            var method = document.querySelector('#method').value;
-            var formd = $('#myForm').serialize()
-            switch (resource) {
-                case "jQuery":
-                    ajaxJQ(url, method, formd);
-                    break;
-                case "Axios":
-                    ajaxAX(url, method, formd);
-                    break;
-                case "Fetch":
-                    ajaxFe(url, method, formd);
-                    break;
-                default:
-                    ajaxJS(url, method, formd);
-            }
-        }
-
-        // Postea un comentario en twitter
-        function addComment() {
-            event.preventDefault();
-            let newTweetComment = {
-                "comment": document.getElementById('newMessage').value
-            }
-            console.log('new tweet es : ', newTweetComment);
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", 'http://localhost:3000/comment/', true);
-            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState != 4 || xhr.status != 200) return;
-                console.log(xhr.responseText);
-            }
-            xhr.send(JSON.stringify(newTweetComment));
-        }
-
-        // Busca y muestra twits en twitter
-        function getAllTweets() {
-            console.log('entra 3 : ');
-            const url = 'http://localhost:3000/tweets/' + search.value;
-            console.log('url es : ', url);
-            fetch(url).then(function(response) {
-                return response.json()
-            }).then(function(data) {
-                outputTweets(data.statuses)
-            }).catch(function(error) {
-                console.log('error : ', JSON.stringify(error));
             })
-        }
 
-        function outputTweets(data) {
-            output.innerHTML = ' ';
-            data.forEach(function(item, i) {
-                console.log(item);
-                let hyper = `<a href="https://twitter.com/i/web/status/${item.id_str}" target="_blank">${item.text}</a>`;
-                let li = document.createElement('li');
-                let span = document.createElement('span');
-                span.innerHTML = `${hyper} <small>${item.user.name}</small> ♥ ${item.retweet_count}`;
-                li.appendChild(span);
-                output.appendChild(li);
+            $('#twitter').click(function() {
+                console.log('twitter');
+                $('#wikipediaPage').hide();
+                $('#facebookPage').hide();
+                $('#twitterPage').show();
+
             })
-        }
-    </script>
+
+
+
+            $('#wikipedia').click(function() {
+                console.log('wiki');
+                $('#wikipediaPage').show();
+                $('#facebookPage').hide();
+                $('#twitterPage').hide();
+
+            })
+
+            // Publica en facebook
+            function addCommentFace() {
+                event.preventDefault();
+                let newFacePublic = {
+                    "comment": document.getElementById('newMessageFace').value
+                }
+                console.log('new face es : ', newFacePublic);
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", 'http://localhost:3000/facebook/comment/', true);
+                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState != 4 || xhr.status != 200) return;
+                    console.log(xhr.responseText);
+                }
+                xhr.send(JSON.stringify(newFacePublic));
+            }
+
+            // Postea un comentario en twitter
+            function addComment() {
+                event.preventDefault();
+                let newTweetComment = {
+                    "comment": document.getElementById('newMessage').value
+                }
+                console.log('new tweet es : ', newTweetComment);
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", 'http://localhost:3000/comment/', true);
+                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState != 4 || xhr.status != 200) return;
+                    console.log(xhr.responseText);
+                }
+                xhr.send(JSON.stringify(newTweetComment));
+            }
+
+            // Busca y muestra twits en twitter
+            function getAllTweets() {
+                console.log('entra 3 : ');
+                const url = 'http://localhost:3000/tweets/' + search.value;
+                console.log('url es : ', url);
+                fetch(url).then(function(response) {
+                    return response.json()
+                }).then(function(data) {
+                    outputTweets(data.statuses)
+                }).catch(function(error) {
+                    console.log('error : ', JSON.stringify(error));
+                })
+            }
+
+            function outputTweets(data) {
+                output.innerHTML = ' ';
+                data.forEach(function(item, i) {
+                    console.log(item);
+                    let hyper = `<a href="https://twitter.com/i/web/status/${item.id_str}" target="_blank">${item.text}</a>`;
+                    let li = document.createElement('li');
+                    let span = document.createElement('span');
+                    span.innerHTML = `${hyper} <small>${item.user.name}</small> ♥ ${item.retweet_count}`;
+                    li.appendChild(span);
+                    output.appendChild(li);
+                })
+            }
+        </script>
 </body>
 
 </html>

@@ -1,9 +1,24 @@
+<h1>
+    <i class="ri-twitter-line"></i>Twitter</h1>
 <form id="mesSender">
-    <textarea style="margin-left: 100px;" id="newMessage" rows="4"></textarea>
-    <br>
-    <button style="margin-left: 100px;" type="submit">Post of Twitter</button>
+    <!-- <textarea style="margin-left: 100px;" id="newMessage" rows="4"></textarea> -->
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Ingresa el posteo : </label>
+        <textarea class="form-control" id="newMessage" rows="3"></textarea>
+    </div>
+    <!-- <button style="margin-left: 100px;" type="submit">Post of Twitter</button>
+     -->
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Postear en twitter</button>
+    </div>
 </form>
 <br>
-<input type="text" id="search" value="" placeholder="Search Term">
-<button id="getTweets">Search Tweets</button>
+<input type="text" class="form-control" id="search" aria-describedby="emailHelp" placeholder="Buscar Term">
+<!-- <input type="text" id="search" value="" placeholder="Search Term"> -->
+<!-- <button id="getTweets">Search Tweets</button> -->
+<br>
+<div class="col-auto">
+    <button id="getTweets" type="submit" class="btn btn-success mb-3">Buscar en twitter</button>
+</div>
+
 <ul id="output"></ul>
