@@ -26,9 +26,9 @@ require('./models/Usuarios');
 // Archivos estaticos
 app.use(express.static('public'));
 
-//
+// Para usar el cuerpo de la peticion (body)
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.json());
 
 // set the view engine to ejs
 app.engine('ejs', require('ejs').renderFile);

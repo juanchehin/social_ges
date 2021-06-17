@@ -18,3 +18,11 @@ exports.buscarTweets = (req, res) => {
         })
 
 }
+
+exports.publicar = (req, res) => {
+    T.post('statuses/update', {
+        status: req.body.comment
+    }, function(err, data, response) {
+        res.json(data)
+    })
+}
