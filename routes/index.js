@@ -6,10 +6,10 @@ const router = express.Router();
 const twitterController = require('../controllers/twitterController');
 const homeController = require('../controllers/homeController');
 const facebookController = require('../controllers/facebookController');
+const authController = require('../controllers/authController');
 
 
-
-// Ruta para el home
+// Ruta principal para login
 router.get('/',
     homeController.home
 );
