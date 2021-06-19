@@ -1,6 +1,7 @@
 const express = require('express');
 const routes = require('./routes');
 const path = require('path');
+const passport = require('./config/passport');
 
 // Importar variables
 require('dotenv').config({ path: 'variables.env' })
@@ -33,6 +34,13 @@ app.use(express.json());
 // set the view engine to ejs
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
+
+// ************* PASSPORT *************
+app.use(passport.initialize());
+// app.use(passport.session());
+// app.use(flash());
+// ************* FIN PASSPORT *************
+
 
 app.use('/', index);
 
