@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const db = require('../config/db');
 const bcrypt = require('bcrypt-nodejs');
-/*
-const Usuarios = db.define('usuarios', {
+
+const User = db.define('usuarios', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -33,12 +33,15 @@ const Usuarios = db.define('usuarios', {
             }
         }
     },
-    activo: {
+    enabled: {
         type: Sequelize.INTEGER,
         defaultValue: 0
     },
     token: Sequelize.STRING,
-    expiracion: Sequelize.DATE
+    expiracion: Sequelize.DATE,
+    created_at: Sequelize.DATE,
+    updated_at: Sequelize.DATE,
+    deleted_at: Sequelize.DATE
 }, {
     hooks: {
         beforeCreate(usuario) {
@@ -46,12 +49,14 @@ const Usuarios = db.define('usuarios', {
         }
     }
 });
-*/
+
 // Métodos personalizados
-/*Usuarios.prototype.verificarPassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
+User.prototype.verificarPassword = function(password) {
+    // return bcrypt.compareSync(password, this.password);
+    console.log('pass es : ', password);
+    return password == this.password;
 }
-*/
+
 // Usuarios.hasMany(Proyectos);
 
-// module.exports = Usuarios;
+module.exports = User;

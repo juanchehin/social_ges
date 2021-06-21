@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt-nodejs');
 
 // autenticar el usuario
 exports.login = passport.authenticate('local', {
-    successRedirect: '/home',
+    successRedirect: '/dashboard',
     failureRedirect: '/',
     // failureFlash: true,
     // badRequestMessage: 'Ambos Campos son Obligatorios'
@@ -22,14 +22,16 @@ exports.usuarioAutenticado = (req, res, next) => {
         return next();
     }
     // sino esta autenticado, redirigir al formulario
-    return res.redirect('/iniciar-sesion');
+    return res.redirect('/');
 }
 
 // función para cerrar sesión
 exports.cerrarSesion = (req, res) => {
-        req.session.destroy(() => {
-            res.redirect('/iniciar-sesion'); // al cerrar sesión nos lleva al login
-        })
+        res.redirect('/');
+
+        // req.session.destroy(() => {
+        //     res.redirect('/');
+        // })
     }
     /*
     // genera un token si el usuario es valido

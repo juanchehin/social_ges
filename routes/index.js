@@ -14,6 +14,11 @@ router.get('/',
     homeController.login
 );
 
+// Ruta logout
+router.get('/logout',
+    authController.cerrarSesion
+);
+
 // Ruta POST login
 router.post('/login',
     authController.login
