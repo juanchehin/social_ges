@@ -41,7 +41,6 @@
         "sequelize": "^6.6.2",
         "shortid": "^2.2.16",
         "slug": "^5.0.1",
-        "sweetalert2": "^11.0.16",
         "tedious": "^11.0.8",
         "twit": "^2.2.11"
     },

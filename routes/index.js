@@ -11,6 +11,7 @@ const authController = require('../controllers/authController');
 
 // Ruta principal - login
 router.get('/',
+    // authController.usuarioAutenticado,
     homeController.login
 );
 

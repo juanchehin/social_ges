@@ -1,26 +1,49 @@
-// AuthController.js
 const passport = require('passport');
 const Usuarios = require('../models/Usuarios');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op
 const crypto = require('crypto');
 const bcrypt = require('bcrypt-nodejs');
+let notification = false;
 
-// autenticar el usuario
-exports.login = passport.authenticate('local', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/',
-    // failureFlash: true,
-    // badRequestMessage: 'Ambos Campos son Obligatorios'
-});
+exports.login = function(req, res, next) {
+    passport.authenticate('local', function(err, user, info) {
+        if (err) {
+            console.log('entra err');
+            return next(err);
+        }
+        if (!user) {
+            console.log('entra user');
+            let notification = true;
+
+            res.render('partials/login', { notification: notification });
+            return;
+        }
+        req.logIn(user, function(err) {
+            // console.log('user es : ', user);
+            if (err) {
+                console.log('entra err 2');
+
+                return next(err);
+            }
+            console.log('entra user 2');
+
+            return res.redirect('/dashboard');
+        });
+    })(req, res, next);
+};
 
 // Función para revisar si el usuario esta logueado o no
 exports.usuarioAutenticado = (req, res, next) => {
-
+    console.log('entra usuarioAutenticado');
     // si el usuario esta autenticado, adelante
     if (req.isAuthenticated()) {
+        console.log('entra isAuthenticated');
+
         return next();
     }
+    console.log('entra isAuthenticated 1');
+
     // sino esta autenticado, redirigir al formulario
     return res.redirect('/');
 }

@@ -18,20 +18,15 @@ passport.use(new LocalStrategy(
 
             // El usuario existe, password incorrecto
             if (!usuario.verificarPassword(password)) {
-                return done(null, false, {
-                    message: 'Password Incorrecto'
-                })
+                return done(null, false)
             }
-            // El email existe, y el password correcto
+            // OK - El email existe, y el password correcto
             // console.log('usuario en passport.js -> linea 31 es :', usuario);
-            return done(null, usuario);
+            return done(null, true);
         } catch (error) {
             console.log('entra 4');
-
             // Ese usuario no existe
-            return done(null, false, {
-                message: 'Esa cuenta no existe'
-            })
+            return done(null, false)
         }
     }
 ));

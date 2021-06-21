@@ -2,6 +2,9 @@ const express = require('express');
 const routes = require('./routes');
 const path = require('path');
 const passport = require('./config/passport');
+const flash = require('connect-flash');
+const session = require('express-session');
+
 
 // Importar variables
 require('dotenv').config({ path: 'variables.env' })
@@ -20,7 +23,7 @@ const { resolve } = require('path');
 require('./models/Usuarios');
 
 // db.sync()
-//     .then(() => console.log('Conectado al Servidor'))
+//     .then(() => console.log('Conectado al Servidor MySQL'))
 //     .catch(error => console.log(error));
 
 
@@ -36,8 +39,14 @@ app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
 // ************* PASSPORT *************
+app.use(session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: false
+}));
+
 app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.session());
 // app.use(flash());
 // ************* FIN PASSPORT *************
 
