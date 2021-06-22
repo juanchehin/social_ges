@@ -1,9 +1,9 @@
 <h1>
     <i class="ri-facebook-circle-fill"></i>Facebook</h1>
-<form id="mesSenderFace">
+<form id="mesSenderFace" method="POST" action="/facebook">
     <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Ingresa la publicacion : </label>
-        <textarea class="form-control" id="newMessageFace" rows="3"></textarea>
+        <textarea class="form-control" id="newMessageFace" rows="3" name="texto"></textarea>
     </div>
     <div class="col-auto">
         <button type="submit" class="btn btn-primary mb-3">Publicar en facebook</button>

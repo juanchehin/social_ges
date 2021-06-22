@@ -128,10 +128,15 @@
             const output = document.getElementById('output');
             const mesSender = document.getElementById('mesSender');
 
+            const getWiki = document.getElementById('getWiki');
+            const searchWiki = document.getElementById('searchWiki');
+
             const facebook = document.getElementById('facebook');
 
             mesSender.addEventListener('submit', addComment);
             getTweets.addEventListener('click', getAllTweets);
+
+            getWiki.addEventListener('click', getAllWikis);
 
             // Al principio, solo aparece twitter
             $('#wikipediaPage').hide();
@@ -172,23 +177,6 @@
                 $('#twitterPage').hide();
                 $('#instagramPage').show();
             })
-
-            // Publica en facebook
-            function addCommentFace() {
-                event.preventDefault();
-                let newFacePublic = {
-                    "comment": document.getElementById('newMessageFace').value
-                }
-                console.log('new face es : ', newFacePublic);
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", 'http://localhost:3000/facebook/comment/', true);
-                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState != 4 || xhr.status != 200) return;
-                    console.log(xhr.responseText);
-                }
-                xhr.send(JSON.stringify(newFacePublic));
-            }
 
             // Postea un comentario en twitter
             function addComment() {
@@ -233,6 +221,84 @@
                     li.appendChild(span);
                     output.appendChild(li);
                 })
+            }
+
+            // ************* Wikipedia ********************
+            // Busca y muestra twits en Facebook
+            function getAllWikis() {
+                console.log('entra getAllWikipedia : ');
+                const url = 'http://localhost:3000/wikipedia/' + searchWiki.value;
+                console.log('url es : ', url);
+                /*fetch(url)
+                    .then(response => response.json())
+                    .then(function(data) {
+                        outputWikipedia(data)
+                    });*/
+
+                fetch(url).then(function(response) {
+                    return response.json()
+                }).then(function(data) {
+                    outputWikipedia(data)
+                }).catch(function(error) {
+                    console.log('errorWikipedia : ', error);
+                })
+            }
+
+            function outputWikipedia(data) {
+                console.log('entra outputWikipedia : ');
+                outputWiki.innerHTML = ' ';
+                // console.log(item);
+                // let hyper = `<a href="https://twitter.com/i/web/status/${item.id_str}" target="_blank">${item.text}</a>`;
+                let hyper = data;
+                let li = document.createElement('li');
+                let span = document.createElement('span');
+                span.innerHTML = `${hyper} `;
+                li.appendChild(span);
+                outputWiki.appendChild(li);
+            }
+            // ************* Faceboook ********************
+            // Busca y muestra twits en Facebook
+            function getAllFacebook() {
+                console.log('entra getAllFacebook : ');
+                const url = 'http://localhost:3000/facebook/' + search.value;
+                console.log('url es : ', url);
+                fetch(url).then(function(response) {
+                    return response.json()
+                }).then(function(data) {
+                    outputFacebook(data.statuses)
+                }).catch(function(error) {
+                    console.log('error : ', JSON.stringify(error));
+                })
+            }
+
+            function outputFacebook(data) {
+                outputFace.innerHTML = ' ';
+                data.forEach(function(item, i) {
+                    console.log(item);
+                    let hyper = `<a href="https://twitter.com/i/web/status/${item.id_str}" target="_blank">${item.text}</a>`;
+                    let li = document.createElement('li');
+                    let span = document.createElement('span');
+                    span.innerHTML = `${hyper} <small>${item.user.name}</small> ♥ ${item.retweet_count}`;
+                    li.appendChild(span);
+                    output.appendChild(li);
+                })
+            }
+
+            // Publica en facebook
+            function addCommentFace() {
+                event.preventDefault();
+                let newFacePublic = {
+                    "comment": document.getElementById('newMessageFace').value
+                }
+                console.log('new face es : ', newFacePublic);
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", 'http://localhost:3000/facebook/comment/', true);
+                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState != 4 || xhr.status != 200) return;
+                    console.log(xhr.responseText);
+                }
+                xhr.send(JSON.stringify(newFacePublic));
             }
         </script>
 </body>

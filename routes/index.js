@@ -7,11 +7,11 @@ const twitterController = require('../controllers/twitterController');
 const homeController = require('../controllers/homeController');
 const facebookController = require('../controllers/facebookController');
 const authController = require('../controllers/authController');
+const wikiController = require('../controllers/wikiController');
 
 
 // Ruta principal - login
 router.get('/',
-    // authController.usuarioAutenticado,
     homeController.login
 );
 
@@ -23,6 +23,21 @@ router.get('/logout',
 // Ruta POST login
 router.post('/login',
     authController.login
+);
+
+// Ruta POST facebook
+router.post('/facebook',
+    facebookController.publicar
+);
+
+// Ruta POST wikipedia
+router.post('/wikipedia',
+    wikiController.publicar
+);
+
+// Ruta GET wikipedia
+router.get('/wikipedia/:searchWiki',
+    wikiController.obtenerArticulos
 );
 
 // Ruta dashboard 
