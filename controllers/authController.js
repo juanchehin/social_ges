@@ -9,24 +9,19 @@ let notification = false;
 exports.login = function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
         if (err) {
-            console.log('entra err');
             return next(err);
         }
         if (!user) {
-            console.log('entra user');
             let notification = true;
 
             res.render('partials/login', { notification: notification });
             return;
         }
         req.logIn(user, function(err) {
-            // console.log('user es : ', user);
             if (err) {
-                console.log('entra err 2');
 
                 return next(err);
             }
-            console.log('entra user 2');
 
             return res.redirect('/dashboard');
         });
@@ -35,26 +30,19 @@ exports.login = function(req, res, next) {
 
 // Función para revisar si el usuario esta logueado o no
 exports.usuarioAutenticado = (req, res, next) => {
-    console.log('entra usuarioAutenticado');
-    // si el usuario esta autenticado, adelante
     if (req.isAuthenticated()) {
-        console.log('entra isAuthenticated');
-
         return next();
     }
-    console.log('entra isAuthenticated 1');
-
-    // sino esta autenticado, redirigir al formulario
     return res.redirect('/');
 }
 
 // función para cerrar sesión
 exports.cerrarSesion = (req, res) => {
-        res.redirect('/');
+        // res.redirect('/');
 
-        // req.session.destroy(() => {
-        //     res.redirect('/');
-        // })
+        req.session.destroy(() => {
+            res.redirect('/');
+        })
     }
     /*
     // genera un token si el usuario es valido

@@ -27,6 +27,7 @@ router.post('/login',
 
 // Ruta dashboard 
 router.get('/dashboard',
+    authController.usuarioAutenticado,
     homeController.dashboard
 );
 
