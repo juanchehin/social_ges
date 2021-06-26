@@ -47,6 +47,18 @@
                                     <span data-feather="shopping-cart"></span> Instagram
                                 </a>
                             </li>
+                            <li class="nav-item" id="meli">
+                                <a class="nav-link" href="#">
+                                    <i class="ri-luggage-cart-line"></i>
+                                    <span data-feather="shopping-cart"></span> Mercado libre
+                                </a>
+                            </li>
+                            <li class="nav-item" id="blogger">
+                                <a class="nav-link" href="#">
+                                    <i class="ri-chat-quote-fill"></i>
+                                    <span data-feather="shopping-cart"></span> Blogger
+                                </a>
+                            </li>
                         </ul>
 
                         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -96,6 +108,12 @@
                     <div id="instagramPage">
                         <%- include('../pages/instagram'); %>
                     </div>
+                    <div id="meliPage">
+                        <%- include('../pages/meli'); %>
+                    </div>
+                    <div id="bloggerPage">
+                        <%- include('../pages/blogger'); %>
+                    </div>
                     <!-- ************************* -->
                 </main>
             </div>
@@ -105,8 +123,6 @@
         <footer>
             <%- include('../partials/footer'); %>
         </footer>
-
-
 
         <!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
 
@@ -118,9 +134,13 @@
         <!-- Modularizar esto de abajo -_-- -->
 
         <script>
-            // var twitter = document.querySelector('#twitter').value;
-            // console.log('twitter es ;: ', twitter);
-
+            // Al principio, solo aparece twitter
+            $('#wikipediaPage').hide();
+            $('#meliPage').hide();
+            $('#facebookPage').hide();
+            $('#twitterPage').show();
+            $('#instagramPage').hide();
+            $('#bloggerPage').hide();
 
 
             const search = document.getElementById('search');
@@ -131,18 +151,18 @@
             const getWiki = document.getElementById('getWiki');
             const searchWiki = document.getElementById('searchWiki');
 
+            const dameBloggerButton = document.getElementById('dameBloggerButton');
+
+
             const facebook = document.getElementById('facebook');
 
             mesSender.addEventListener('submit', addComment);
             getTweets.addEventListener('click', getAllTweets);
+            dameBloggerButton.addEventListener('click', dameBlogger);
+
 
             getWiki.addEventListener('click', getAllWikis);
 
-            // Al principio, solo aparece twitter
-            $('#wikipediaPage').hide();
-            $('#facebookPage').hide();
-            $('#twitterPage').show();
-            $('#instagramPage').hide();
 
             $('#facebook').click(function() {
                 console.log('facebook');
@@ -150,6 +170,9 @@
                 $('#facebookPage').show();
                 $('#twitterPage').hide();
                 $('#instagramPage').hide();
+                $('#meliPage').hide();
+                $('#bloggerPage').hide();
+
             })
 
             $('#twitter').click(function() {
@@ -158,9 +181,21 @@
                 $('#facebookPage').hide();
                 $('#twitterPage').show();
                 $('#instagramPage').hide();
+                $('#meliPage').hide();
+                $('#bloggerPage').hide();
+
             })
 
+            $('#meli').click(function() {
+                console.log('meli');
+                $('#wikipediaPage').hide();
+                $('#facebookPage').hide();
+                $('#twitterPage').hide();
+                $('#instagramPage').hide();
+                $('#meliPage').show();
+                $('#bloggerPage').hide();
 
+            })
 
             $('#wikipedia').click(function() {
                 console.log('wiki');
@@ -168,6 +203,9 @@
                 $('#facebookPage').hide();
                 $('#twitterPage').hide();
                 $('#instagramPage').hide();
+                $('#meliPage').hide();
+                $('#bloggerPage').hide();
+
             })
 
             $('#instagram').click(function() {
@@ -176,6 +214,18 @@
                 $('#facebookPage').hide();
                 $('#twitterPage').hide();
                 $('#instagramPage').show();
+                $('#meliPage').hide();
+                $('#bloggerPage').hide();
+
+            })
+
+            $('#blogger').click(function() {
+                $('#wikipediaPage').hide();
+                $('#facebookPage').hide();
+                $('#twitterPage').hide();
+                $('#instagramPage').hide();
+                $('#meliPage').hide();
+                $('#bloggerPage').show();
             })
 
             // Postea un comentario en twitter
@@ -299,6 +349,34 @@
                     console.log(xhr.responseText);
                 }
                 xhr.send(JSON.stringify(newFacePublic));
+            }
+
+            // ************* BLOGGER ********************
+            // 
+            function dameBlogger() {
+                const url = 'http://localhost:3000/blogger/';
+                console.log('url es : ', url);
+                fetch(url).then(function(response) {
+                    console.log('response es : ', response)
+                    return response.json()
+                }).then(function(data) {
+                    outputBlogger(data.statuses)
+                }).catch(function(error) {
+                    console.log('error : ', JSON.stringify(error));
+                })
+            }
+
+            function outputBlogger(data) {
+                console.log('entra outputBlogger : ');
+                outputWiki.innerHTML = ' ';
+                // console.log(item);
+                // let hyper = `<a href="https://twitter.com/i/web/status/${item.id_str}" target="_blank">${item.text}</a>`;
+                let hyper = data;
+                let li = document.createElement('li');
+                let span = document.createElement('span');
+                span.innerHTML = `${hyper} `;
+                li.appendChild(span);
+                outputBlogger.appendChild(li);
             }
         </script>
 </body>
