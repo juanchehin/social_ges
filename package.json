@@ -1,24 +1,24 @@
 {
-    "name": "uptask",
+    "name": "social_ges",
     "version": "1.0.0",
-    "description": "Esta es una aplicacion llamda 'uptask' para el curso de nodejs - PILIS catamarca",
-    "main": "index.js",
+    "description": "Esta es una aplicacion llamada 'SOCIAL GES'",
+    "main": "app.js",
     "scripts": {
         "desarrollo": "concurrently \"npm run dev \" \"npm run watch \" ",
-        "dev": "nodemon ./index.js",
-        "start": "node ./index.js",
+        "dev": "nodemon ./app.js",
+        "start": "node ./app.js",
         "watch": "webpack -w --mode development"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/juanchehin/UpTask.git"
+        "url": "git+https://github.com/juanchehin/social_ges.git"
     },
-    "author": "Juan Chehin - CRDevelopment",
+    "author": "Juan Chehin - Slider - Tucuman",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/juanchehin/UpTask/issues"
+        "url": "https://github.com/juanchehin/social_ges/issues"
     },
-    "homepage": "https://github.com/juanchehin/UpTask#readme",
+    "homepage": "https://github.com/juanchehin/social_ges#readme",
     "dependencies": {
         "alertifyjs": "^1.13.1",
         "axios": "^0.21.1",
@@ -35,6 +35,7 @@
         "html-to-text": "^7.1.1",
         "jquery": "^3.6.0",
         "juice": "^8.0.0",
+        "mercadolibre-nodejs-sdk": "^3.0.1",
         "mysql2": "^2.2.5",
         "nodemailer": "^6.6.1",
         "pageviews": "^1.5.0",
@@ -42,7 +43,6 @@
         "passport-local": "^1.0.0",
         "sequelize": "^6.6.2",
         "shortid": "^2.2.16",
-        "slug": "^5.0.1",
         "tedious": "^11.0.8",
         "twit": "^2.2.11",
         "wikijs": "^6.2.1"
