@@ -16,6 +16,12 @@ router.get('/',
     homeController.login
 );
 
+// Ruta dashboard 
+router.get('/dashboard',
+    authController.usuarioAutenticado,
+    homeController.dashboard
+);
+
 // Ruta logout
 router.get('/logout',
     authController.cerrarSesion
@@ -26,11 +32,17 @@ router.post('/login',
     authController.login
 );
 
+// ======================================
+//  Facebook
+// ======================================
 // Ruta POST facebook
 router.post('/facebook',
     facebookController.publicar
 );
 
+// ======================================
+//  Wikipedia
+// ======================================
 // Ruta POST wikipedia
 router.post('/wikipedia',
     wikiController.publicar
@@ -41,11 +53,6 @@ router.get('/wikipedia/:searchWiki',
     wikiController.obtenerArticulos
 );
 
-// Ruta dashboard 
-router.get('/dashboard',
-    authController.usuarioAutenticado,
-    homeController.dashboard
-);
 
 // ======================================
 //  Twitter
@@ -63,7 +70,7 @@ router.post('/twitter/newtweet',
 //  Spotify
 // ======================================
 
-router.get('/spotify/',
+router.get('/spotify',
     spotifyController.listarNovedades
 );
 
