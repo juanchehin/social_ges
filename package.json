@@ -1,7 +1,7 @@
 {
     "name": "uptask",
     "version": "1.0.0",
-    "description": "Esta es una aplicacion llamda 'uptask' para el curso de nodejs - PILIS catamarca",
+    "description": "Social",
     "main": "index.js",
     "scripts": {
         "desarrollo": "concurrently \"npm run dev \" \"npm run watch \" ",
@@ -11,9 +11,9 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/juanchehin/UpTask.git"
+        "url": "git+https://github.com/juanchehin/social_ges.git"
     },
-    "author": "Juan Chehin - CRDevelopment",
+    "author": "Juan Chehin - Slider",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/juanchehin/UpTask/issues"

@@ -130,8 +130,6 @@
             // var twitter = document.querySelector('#twitter').value;
             // console.log('twitter es ;: ', twitter);
 
-
-
             const search = document.getElementById('search');
             const getTweets = document.getElementById('getTweets');
             const output = document.getElementById('output');
@@ -204,6 +202,7 @@
                 $('#twitterPage').hide();
                 $('#instagramPage').hide();
                 $('#spotifyPage').show();
+                listarNovedades();
             })
 
             // Postea un comentario en twitter
@@ -333,29 +332,30 @@
             //  Spotify
             // ======================================
             // Listar canciones
-            function listarNovedades(data) {
+            function listarNovedades() {
                 console.log('entra listarNovedades : ');
-                const url = 'http://localhost:3000/spotify/';
+                const url = 'http://localhost:3000/spotify';
                 console.log('url spoti es : ', url);
+
                 fetch(url).then(function(response) {
                     return response.json()
                 }).then(function(data) {
-                    outputFacebook(data.statuses)
+                    console.log('data fetch listar es : ', data);
+
+                    outputSpotify(data)
                 }).catch(function(error) {
-                    console.log('error : ', JSON.stringify(error));
+                    console.log('errorSpoti : ', error);
                 })
             }
 
             function outputSpotify(data) {
-                outputFace.innerHTML = ' ';
-                data.forEach(function(item, i) {
-                    console.log(item);
-                    // let hyper = `<a href="https://twitter.com/i/web/status/${item.id_str}" target="_blank">${item.text}</a>`;
-                    let li = document.createElement('li');
-                    let span = document.createElement('span');
-                    // span.innerHTML = `${hyper} <small>${item.user.name}</small> ♥ ${item.retweet_count}`;
-                    li.appendChild(span);
-                    output.appendChild(li);
+                // console.log('data outputSpotify es : ', data.albums.items.length);
+                $.each(data, function(i) {
+                    for (var i = 0; i < data.albums.items.length; i++) {
+                        var templateString = '<div class="col"><div class="card"><img src="' + data.albums.items[i].images[2] + '" class="card-img-top"><div class="card-body"><h5 class="card-title">' + data.albums.items[i].name + '</h5><p class="card-text"> ' + data.albums.items.length + '</p>' + data.albums.items.length + '</div></div></div></div>';
+                        //You can get the prop of array with arr[i].Name
+                        $('#outputSpotify').append(templateString);
+                    }
                 })
             }
         </script>

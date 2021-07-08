@@ -8,15 +8,15 @@ var spotifyApi = new SpotifyWebApi({
     redirectUri: 'http://localhost:3000'
 });
 
-spotifyApi.setAccessToken('BQAOgat9AKtCYmOyXg-0Y60t3pD_TxE5UsFNc6C_uzc08CZ625Cg3af1JwAk69sZhrWg7z-yn8GIjRbG4Tw');
+spotifyApi.setAccessToken('BQAhDLxi3A1OoQ4pvwCezQZyB1CcVO-cwImigjjrOyWL8aS6boVk8_DTDyR3QgUVIJ_Wg2vu9c4wHG2uID4');
 
 exports.listarNovedades = (req, res) => {
     spotifyApi.getNewReleases({ limit: 5, offset: 0, country: 'AR' })
         .then(function(data) {
             console.log('data body es : ', data.body);
-            // done();
-            return;
+            return res.json(data.body);
         }, function(err) {
             console.log("Something went wrong!", err);
         });
+
 }
