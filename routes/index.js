@@ -8,6 +8,7 @@ const homeController = require('../controllers/homeController');
 const facebookController = require('../controllers/facebookController');
 const authController = require('../controllers/authController');
 const wikiController = require('../controllers/wikiController');
+const spotifyController = require('../controllers/spotifyController');
 
 
 // Ruta principal - login
