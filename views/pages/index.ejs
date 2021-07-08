@@ -352,7 +352,7 @@
                 // console.log('data outputSpotify es : ', data.albums.items.length);
                 $.each(data, function(i) {
                     for (var i = 0; i < data.albums.items.length; i++) {
-                        var templateString = '<div class="col"><div class="card"><img src="' + data.albums.items[i].images[2] + '" class="card-img-top"><div class="card-body"><h5 class="card-title">' + data.albums.items[i].name + '</h5><p class="card-text"> ' + data.albums.items.length + '</p>' + data.albums.items.length + '</div></div></div></div>';
+                        var templateString = '<div class="card"><img src="' + data.albums.items[i].images[2] + '" class="card-img-top"><div class="card-body"><h5 class="card-title">' + data.albums.items[i].name + '</h5><p class="card-text"> ' + data.albums.items[i].name + '</p><a href="' + data.albums.items[i].external_urls.spotify + '" class="btn btn-primary">Escuchar</a></div></div></div>';
                         //You can get the prop of array with arr[i].Name
                         $('#outputSpotify').append(templateString);
                     }
