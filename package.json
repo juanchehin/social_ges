@@ -43,6 +43,7 @@
         "sequelize": "^6.6.2",
         "shortid": "^2.2.16",
         "slug": "^5.0.1",
+        "spotify-web-api-node": "^5.0.2",
         "tedious": "^11.0.8",
         "twit": "^2.2.11",
         "wikijs": "^6.2.1"

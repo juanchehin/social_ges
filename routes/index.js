@@ -46,6 +46,10 @@ router.get('/dashboard',
     homeController.dashboard
 );
 
+// ======================================
+//  Twitter
+// ======================================
+
 router.get('/tweets/:search',
     twitterController.buscarTweets
 );
@@ -54,6 +58,12 @@ router.post('/twitter/newtweet',
     twitterController.publicar
 );
 
+// ======================================
+//  Spotify
+// ======================================
 
+router.get('/spotify/',
+    spotifyController.listarNovedades
+);
 
 module.exports = router;

@@ -47,6 +47,12 @@
                                     <span data-feather="shopping-cart"></span> Instagram
                                 </a>
                             </li>
+                            <li class="nav-item" id="spotify">
+                                <a class="nav-link" href="#">
+                                    <i class="ri-spotify-line"></i>
+                                    <span data-feather="shopping-cart"></span> Spotify
+                                </a>
+                            </li>
                         </ul>
 
                         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -96,6 +102,9 @@
                     <div id="instagramPage">
                         <%- include('../pages/instagram'); %>
                     </div>
+                    <div id="spotifyPage">
+                        <%- include('../pages/spotify'); %>
+                    </div>
                     <!-- ************************* -->
                 </main>
             </div>
@@ -143,6 +152,8 @@
             $('#facebookPage').hide();
             $('#twitterPage').show();
             $('#instagramPage').hide();
+            $('#spotifyPage').hide();
+
 
             $('#facebook').click(function() {
                 console.log('facebook');
@@ -150,6 +161,7 @@
                 $('#facebookPage').show();
                 $('#twitterPage').hide();
                 $('#instagramPage').hide();
+                $('#spotifyPage').hide();
             })
 
             $('#twitter').click(function() {
@@ -158,6 +170,7 @@
                 $('#facebookPage').hide();
                 $('#twitterPage').show();
                 $('#instagramPage').hide();
+                $('#spotifyPage').hide();
             })
 
 
@@ -168,6 +181,7 @@
                 $('#facebookPage').hide();
                 $('#twitterPage').hide();
                 $('#instagramPage').hide();
+                $('#spotifyPage').hide();
             })
 
             $('#instagram').click(function() {
@@ -176,6 +190,16 @@
                 $('#facebookPage').hide();
                 $('#twitterPage').hide();
                 $('#instagramPage').show();
+                $('#spotifyPage').hide();
+            })
+
+            $('#spotify').click(function() {
+                console.log('spoti');
+                $('#wikipediaPage').hide();
+                $('#facebookPage').hide();
+                $('#twitterPage').hide();
+                $('#instagramPage').hide();
+                $('#spotifyPage').show();
             })
 
             // Postea un comentario en twitter
@@ -299,6 +323,36 @@
                     console.log(xhr.responseText);
                 }
                 xhr.send(JSON.stringify(newFacePublic));
+            }
+
+            // ======================================
+            //  Spotify
+            // ======================================
+            // Listar canciones
+            function listarNovedades(data) {
+                console.log('entra listarNovedades : ');
+                const url = 'http://localhost:3000/spotify/';
+                console.log('url spoti es : ', url);
+                fetch(url).then(function(response) {
+                    return response.json()
+                }).then(function(data) {
+                    outputFacebook(data.statuses)
+                }).catch(function(error) {
+                    console.log('error : ', JSON.stringify(error));
+                })
+            }
+
+            function outputSpotify(data) {
+                outputFace.innerHTML = ' ';
+                data.forEach(function(item, i) {
+                    console.log(item);
+                    // let hyper = `<a href="https://twitter.com/i/web/status/${item.id_str}" target="_blank">${item.text}</a>`;
+                    let li = document.createElement('li');
+                    let span = document.createElement('span');
+                    // span.innerHTML = `${hyper} <small>${item.user.name}</small> ♥ ${item.retweet_count}`;
+                    li.appendChild(span);
+                    output.appendChild(li);
+                })
             }
         </script>
 </body>
