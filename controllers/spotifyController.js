@@ -8,15 +8,24 @@ var spotifyApi = new SpotifyWebApi({
     redirectUri: 'http://localhost:3000'
 });
 
-spotifyApi.setAccessToken('BQAhDLxi3A1OoQ4pvwCezQZyB1CcVO-cwImigjjrOyWL8aS6boVk8_DTDyR3QgUVIJ_Wg2vu9c4wHG2uID4');
+spotifyApi.setAccessToken('BQDqQiozEcUD5Zetyp-GH3qxBfW4veBqcm6Tp7WkUl2gIeOcRAr7bEup_Npdcf0uj7blZvUL9IzlaXlRcKI');
 
 exports.listarNovedades = (req, res) => {
     spotifyApi.getNewReleases({ limit: 5, offset: 0, country: 'AR' })
         .then(function(data) {
-            console.log('data body es : ', data.body);
             return res.json(data.body);
         }, function(err) {
             console.log("Something went wrong!", err);
         });
 
+}
+
+exports.obtenerCanciones = (req, res) => {
+    spotifyApi.searchTracks(req.params.cancion)
+        .then(function(data) {
+            // console.log('Search by "Love"', data.body.tracks.items);
+            return res.json(data.body);
+        }, function(err) {
+            console.error(err);
+        });
 }

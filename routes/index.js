@@ -75,5 +75,10 @@ router.get('/spotify',
 );
 
 
+router.get('/spotify/:cancion',
+    spotifyController.obtenerCanciones
+);
+
+
 
 module.exports = router;

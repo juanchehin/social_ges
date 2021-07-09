@@ -127,25 +127,21 @@
         <!-- Modularizar esto de abajo -_-- -->
 
         <script>
-            // var twitter = document.querySelector('#twitter').value;
-            // console.log('twitter es ;: ', twitter);
-
             const search = document.getElementById('search');
             const getTweets = document.getElementById('getTweets');
             const output = document.getElementById('output');
             const mesSender = document.getElementById('mesSender');
             const getSpotify = document.getElementById('getSpotify');
 
-
             const getWiki = document.getElementById('getWiki');
             const searchWiki = document.getElementById('searchWiki');
+            const searchSpotify = document.getElementById('searchSpotify');
 
             const facebook = document.getElementById('facebook');
 
             mesSender.addEventListener('submit', addComment);
             getTweets.addEventListener('click', getAllTweets);
-            getSpotify.addEventListener('click', listarNovedades);
-
+            getSpotify.addEventListener('click', obtenerCanciones);
 
             getWiki.addEventListener('click', getAllWikis);
 
@@ -155,7 +151,6 @@
             $('#twitterPage').show();
             $('#instagramPage').hide();
             $('#spotifyPage').hide();
-
 
             $('#facebook').click(function() {
                 console.log('facebook');
@@ -174,8 +169,6 @@
                 $('#instagramPage').hide();
                 $('#spotifyPage').hide();
             })
-
-
 
             $('#wikipedia').click(function() {
                 console.log('wiki');
@@ -333,27 +326,47 @@
             // ======================================
             // Listar canciones
             function listarNovedades() {
-                console.log('entra listarNovedades : ');
                 const url = 'http://localhost:3000/spotify';
-                console.log('url spoti es : ', url);
 
                 fetch(url).then(function(response) {
                     return response.json()
                 }).then(function(data) {
-                    console.log('data fetch listar es : ', data);
-
                     outputSpotify(data)
                 }).catch(function(error) {
                     console.log('errorSpoti : ', error);
                 })
             }
 
+            // Obtener canciones
+            function obtenerCanciones(cancion) {
+                const url = 'http://localhost:3000/spotify/' + searchSpotify.value;
+
+                fetch(url).then(function(response) {
+                    return response.json()
+                }).then(function(data) {
+                    armarTarjetasCanciones(data)
+                }).catch(function(error) {
+                    console.log('errorSpoti : ', error);
+                })
+            }
+
+            // Arma las tarjetas novedades
             function outputSpotify(data) {
-                // console.log('data outputSpotify es : ', data.albums.items.length);
                 $.each(data, function(i) {
                     for (var i = 0; i < data.albums.items.length; i++) {
                         var templateString = '<div class="col"><div class="card"><img src="' + data.albums.items[i].images[1].url + '" class="card-img-top"><div class="card-body"><h5 class="card-title">' + data.albums.items[i].name + '</h5><p class="card-text"> ' + data.albums.items[i].artists[0].name + '</p><a href="' + data.albums.items[i].external_urls.spotify + '" target="_blank" class="btn btn-primary">Escuchar</a></div></div></div></div>';
                         //You can get the prop of array with arr[i].Name
+                        $('#outputSpotify').append(templateString);
+                    }
+                })
+            }
+
+            // Arma las tarjetas buscar cancion
+            function armarTarjetasCanciones(data) {
+                $("#outputSpotify").empty();
+                $.each(data, function(i) {
+                    for (var i = 0; i < 10; i++) {
+                        var templateString = '<div class="col"><div class="card"><img src="' + data.tracks.items[i].album.images[1].url + '" class="card-img-top"><div class="card-body"><h5 class="card-title">' + data.tracks.items[i].name + '</h5><p class="card-text"> ' + data.tracks.items[i].artists[0].name + '</p><a href="' + data.tracks.items[i].external_urls.spotify + '" target="_blank" class="btn btn-primary">Escuchar</a></div></div></div></div>';
                         $('#outputSpotify').append(templateString);
                     }
                 })
